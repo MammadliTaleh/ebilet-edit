@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styled from "styled-components";
-import Modal from "react-modal"; // Import react-modal for modal functionality
+import Modal from "react-modal"; 
 
 const Container = styled.div`
   background-color: #ffffff;
@@ -117,7 +117,7 @@ const EventForm = () => {
   const [ticketImage, setTicketImage] = useState(null);
   const [isConfigModalOpen, setConfigModalOpen] = useState(false);
 
-  // Configuration JSON state
+
   const [config, setConfig] = useState({
     agenda: true,
     logoShow: true,
@@ -212,7 +212,7 @@ const EventForm = () => {
     }
   };
 
-  // Handlers to update the config JSON
+  
   const handleConfigChange = (key, value) => {
     setConfig((prevConfig) => ({
       ...prevConfig,
@@ -229,7 +229,7 @@ const EventForm = () => {
         <ConfigButton onClick={() => setConfigModalOpen(true)}>Confiqurator</ConfigButton>
       </ButtonContainer>
 
-      {/* Modal for Configuration */}
+
       <Modal
         isOpen={isConfigModalOpen}
         onRequestClose={() => setConfigModalOpen(false)}
@@ -289,7 +289,7 @@ const EventForm = () => {
         )}
       </InputGroup>
 
-      {/* Additional inputs as per your original code */}
+     
       <InputGroup>
         <Label>Biletin Şəkli</Label>
         {ticketImage ? (
