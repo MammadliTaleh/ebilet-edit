@@ -92,6 +92,9 @@ const ConfigButton = styled(Button)`
     background-color: #218838;
   }
 `;
+const AddButton = styled(Button) `
+width:100%;
+`
 
 const TextArea = styled.textarea`
   width: 100%;
@@ -365,6 +368,10 @@ const EventForm = () => {
         <Label>Gizlilik Siyasəti</Label>
         <TextArea placeholder="Gizlilik siyasəti" rows="4" />
       </InputGroup>
+      <ButtonContainer>
+        <AddButton>Əlavə Et</AddButton>
+        
+      </ButtonContainer>
     </Container>
   );
 };
