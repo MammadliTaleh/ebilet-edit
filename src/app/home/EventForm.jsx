@@ -43,6 +43,8 @@ const Button = styled.button`
 
 const InputGroup = styled.div`
   margin-bottom: 15px;
+    border: 1px solid #ddd;
+
 `;
 
 const Label = styled.label`
@@ -120,7 +122,6 @@ const EventForm = () => {
   const [ticketImage, setTicketImage] = useState(null);
   const [isConfigModalOpen, setConfigModalOpen] = useState(false);
 
-
   const [config, setConfig] = useState({
     agenda: true,
     logoShow: true,
@@ -155,16 +156,6 @@ const EventForm = () => {
       companyFontSize: 14,
       doubleSideBadge: false,
       positionFontSize: 14,
-    },
-    fieldsConfig: {
-      fields: [],
-      translate: "AZ",
-      staticFields: {
-        email: { isRequired: false },
-        phone: { isRequired: false },
-        company: { isRequired: false, companyInput: true },
-        position: { isRequired: false, positionInput: true },
-      },
     },
     ticketConfig: {
       qrX: 982,
@@ -215,7 +206,6 @@ const EventForm = () => {
     }
   };
 
-  
   const handleConfigChange = (key, value) => {
     setConfig((prevConfig) => ({
       ...prevConfig,
@@ -232,15 +222,15 @@ const EventForm = () => {
         <ConfigButton onClick={() => setConfigModalOpen(true)}>Confiqurator</ConfigButton>
       </ButtonContainer>
 
-
       <Modal
         isOpen={isConfigModalOpen}
         onRequestClose={() => setConfigModalOpen(false)}
         ariaHideApp={false}
       >
         <ModalContent>
-          <h2>Configuration Settings</h2>
-          
+          <h2>Confiqurasiya</h2>
+
+          {/* Configurator içərisində JSON dəyərlərini input kimi göstərmək üçün */}
           <Label>
             Bilet linki:
             <input
@@ -265,6 +255,65 @@ const EventForm = () => {
               type="checkbox"
               checked={config.logoShow}
               onChange={(e) => handleConfigChange("logoShow", e.target.checked)}
+            />
+          </Label>
+
+          {/* Badge və Ticket Config üçün JSON içi dəyərləri dəyişmək */}
+          <h3>Nişan konfiqurasiyası</h3>
+          <Label>
+            QR X:
+            <input
+              type="number"
+              value={config.badgeConfig.qrX}
+              onChange={(e) =>
+                handleConfigChange("badgeConfig", {
+                  ...config.badgeConfig,
+                  qrX: parseInt(e.target.value, 10),
+                })
+              }
+            />
+          </Label>
+
+          <Label>
+            QR Y:
+            <input
+              type="number"
+              value={config.badgeConfig.qrY}
+              onChange={(e) =>
+                handleConfigChange("badgeConfig", {
+                  ...config.badgeConfig,
+                  qrY: parseInt(e.target.value, 10),
+                })
+              }
+            />
+          </Label>
+
+          <h3>Bilet konfiqurasiyası</h3>
+          <Label>
+            QR X:
+            <input
+              type="number"
+              value={config.ticketConfig.qrX}
+              onChange={(e) =>
+                handleConfigChange("ticketConfig", {
+                  ...config.ticketConfig,
+                  qrX: parseInt(e.target.value, 10),
+                })
+              }
+            />
+          </Label>
+
+          <Label>
+            QR Y:
+            <input
+              type="number"
+              value={config.ticketConfig.qrY}
+              onChange={(e) =>
+                handleConfigChange("ticketConfig", {
+                  ...config.ticketConfig,
+                  qrY: parseInt(e.target.value, 10),
+                })
+              }
             />
           </Label>
 
