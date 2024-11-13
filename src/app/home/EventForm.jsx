@@ -205,18 +205,17 @@ const EventForm = () => {
     },
   });
 
-  const handleImageChange = (e, setImage) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
+  const updateNestedConfig = (obj, keyPath, value) => {
+    const lastKey = keyPath.pop();
+    const lastObj = keyPath.reduce(
+      (nestedObj, key) => nestedObj[key] || (nestedObj[key] = {}),
+      obj
+    );
+    lastObj[lastKey] = value;
+    return { ...obj }; // Return a new copy of config for state update
   };
-
-  const handleConfigChange = (key, value) => {
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      [key]: value,
-    }));
+  const handleConfigChange = (keyPath, value) => {
+    setConfig((prevConfig) => updateNestedConfig({ ...prevConfig }, [...keyPath], value));
   };
 
   return (
@@ -236,47 +235,39 @@ const EventForm = () => {
         <ModalContent>
           <h2>Confiqurasiya</h2>
 
-          {/* Configurator içərisində JSON dəyərlərini input kimi göstərmək üçün */}
           <Label>
             Bilet linki:
             <input
               type="checkbox"
               checked={config.ticketLink}
-              onChange={(e) => handleConfigChange("ticketLink", e.target.checked)}
+              onChange={(e) => handleConfigChange(["ticketLink"], e.target.checked)}
             />
           </Label>
-          
+
           <Label>
             Agenda:
             <input
               type="checkbox"
               checked={config.agenda}
-              onChange={(e) => handleConfigChange("agenda", e.target.checked)}
+              onChange={(e) => handleConfigChange(["agenda"], e.target.checked)}
             />
           </Label>
-
           <Label>
             Logo görünsün:
             <input
               type="checkbox"
               checked={config.logoShow}
-              onChange={(e) => handleConfigChange("logoShow", e.target.checked)}
+              onChange={(e) => handleConfigChange(["logoShow"], e.target.checked)}
             />
           </Label>
 
-          {/* Badge və Ticket Config üçün JSON içi dəyərləri dəyişmək */}
           <h3>Nişan konfiqurasiyası</h3>
           <Label>
             QR X:
             <input
               type="number"
               value={config.badgeConfig.qrX}
-              onChange={(e) =>
-                handleConfigChange("badgeConfig", {
-                  ...config.badgeConfig,
-                  qrX: parseInt(e.target.value, 10),
-                })
-              }
+              onChange={(e) => handleConfigChange(["badgeConfig", "qrX"], parseInt(e.target.value, 10))}
             />
           </Label>
 
@@ -285,14 +276,155 @@ const EventForm = () => {
             <input
               type="number"
               value={config.badgeConfig.qrY}
-              onChange={(e) =>
-                handleConfigChange("badgeConfig", {
-                  ...config.badgeConfig,
-                  qrY: parseInt(e.target.value, 10),
-                })
-              }
+              onChange={(e) => handleConfigChange(["badgeConfig", "qrY"], parseInt(e.target.value, 10))}
             />
           </Label>
+          <Label>
+            NAME X:
+            <input
+              type="number"
+              value={config.badgeConfig.nameX}
+              onChange={(e) => handleConfigChange(["badgeConfig", "nameX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            NAME Y:
+            <input
+              type="number"
+              value={config.badgeConfig.nameY}
+              onChange={(e) => handleConfigChange(["badgeConfig", "nameY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          QR-ın eni:
+            <input
+              type="number"
+              value={config.badgeConfig.qrWidth}
+              onChange={(e) => handleConfigChange(["badgeConfig", "qrWidth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          addressX: 
+            <input
+              type="number"
+              value={config.badgeConfig. addressX}
+              onChange={(e) => handleConfigChange(["badgeConfig", "addressX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          addressY: 
+            <input
+              type="number"
+              value={config.badgeConfig. addressY}
+              onChange={(e) => handleConfigChange(["badgeConfig", "addressY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          companyX: 
+            <input
+              type="number"
+              value={config.badgeConfig. companyX}
+              onChange={(e) => handleConfigChange(["badgeConfig", "companyX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          companyY: 
+            <input
+              type="number"
+              value={config.badgeConfig. companyY}
+              onChange={(e) => handleConfigChange(["badgeConfig", "companyY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          upHeight: 
+            <input
+              type="number"
+              value={config.badgeConfig.upHeight}
+              onChange={(e) => handleConfigChange(["badgeConfig", "upHeight"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          pageWidth: 
+            <input
+              type="number"
+              value={config.badgeConfig. pageWidth}
+              onChange={(e) => handleConfigChange(["badgeConfig", " pageWidth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          positionX: 
+            <input
+              type="number"
+              value={config.badgeConfig.  positionX}
+              onChange={(e) => handleConfigChange(["badgeConfig", "  positionX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          positionY: 
+            <input
+              type="number"
+              value={config.badgeConfig.  positionY}
+              onChange={(e) => handleConfigChange(["badgeConfig", "  positionY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          textWidth: 
+            <input
+              type="number"
+              value={config.badgeConfig. textWidth}
+              onChange={(e) => handleConfigChange(["badgeConfig", "  textWidth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          downHeight: 
+            <input
+              type="number"
+              value={config.badgeConfig. downHeight}
+              onChange={(e) => handleConfigChange(["badgeConfig", " downHeight"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          pageHeigth: 
+            <input
+              type="number"
+              value={config.badgeConfig. pageHeigth}
+              onChange={(e) => handleConfigChange(["badgeConfig", "  pageHeigth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          nameFontSize: 
+            <input
+              type="number"
+              value={config.badgeConfig.nameFontSize}
+              onChange={(e) => handleConfigChange(["badgeConfig", " nameFontSize"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          companyFontSize: 
+            <input
+              type="number"
+              value={config.badgeConfig.companyFontSize}
+              onChange={(e) => handleConfigChange(["badgeConfig", " companyFontSize"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+         
+          <Label>
+          positionFontSize: 
+            <input
+              type="number"
+              value={config.badgeConfig.positionFontSize}
+              onChange={(e) => handleConfigChange(["badgeConfig", " positionFontSize"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          alignCenter: 
+            <input
+              type="name"
+              value={config.badgeConfig.alignCenter}
+              onChange={(e) => handleConfigChange(["badgeConfig", " alignCenter"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+         
 
           <h3>Bilet konfiqurasiyası</h3>
           <Label>
@@ -300,12 +432,7 @@ const EventForm = () => {
             <input
               type="number"
               value={config.ticketConfig.qrX}
-              onChange={(e) =>
-                handleConfigChange("ticketConfig", {
-                  ...config.ticketConfig,
-                  qrX: parseInt(e.target.value, 10),
-                })
-              }
+              onChange={(e) => handleConfigChange(["ticketConfig", "qrX"], parseInt(e.target.value, 10))}
             />
           </Label>
 
@@ -314,12 +441,129 @@ const EventForm = () => {
             <input
               type="number"
               value={config.ticketConfig.qrY}
-              onChange={(e) =>
-                handleConfigChange("ticketConfig", {
-                  ...config.ticketConfig,
-                  qrY: parseInt(e.target.value, 10),
-                })
-              }
+              onChange={(e) => handleConfigChange(["ticketConfig", "qrY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          textX:
+            <input
+              type="number"
+              value={config.ticketConfig.textX}
+              onChange={(e) => handleConfigChange(["ticketConfig", "textX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            textY:
+            <input
+              type="number"
+              value={config.ticketConfig.textY}
+              onChange={(e) => handleConfigChange(["ticketConfig", "textY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            qrWidth:
+            <input
+              type="number"
+              value={config.ticketConfig.qrWidth}
+              onChange={(e) => handleConfigChange(["ticketConfig", "qrWidth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            nameTextX:
+            <input
+              type="number"
+              value={config.ticketConfig.nameTextX}
+              onChange={(e) => handleConfigChange(["ticketConfig", "nameTextX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            nameTextY:
+            <input
+              type="number"
+              value={config.ticketConfig.nameTextY}
+              onChange={(e) => handleConfigChange(["ticketConfig", "nameTexty"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+           textColor:
+            <input
+              type="color"
+              value={config.ticketConfig.textColor}
+              onChange={(e) => handleConfigChange(["ticketConfig", "textColor"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+
+          <h3>Bilet daxili konfiqurasiyası</h3>
+          <Label>
+            QR X:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.qrX}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "qrX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            QR Y:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.qrY}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "qrY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            test X:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.textX}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "testX"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            test Y:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.textY}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "testY"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            qrWidth:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.qrWidth}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "qrWidth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            pageWidth:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.pageWidth}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "pageWidth"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            pageHeight:
+            <input
+              type="number"
+              value={config.ticketEmptyConfig.pageHeight}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "pageHeight"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            ticketName:
+            <input
+              type="name"
+              value={config.ticketEmptyConfig.ticketName}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "ticketName"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+            alignCenter:
+            <input
+              type="name"
+              value={config.ticketEmptyConfig.alignCenter}
+              onChange={(e) => handleConfigChange(["ticketEmptyConfig", "alignCenter"], parseInt(e.target.value, 10))}
             />
           </Label>
 
