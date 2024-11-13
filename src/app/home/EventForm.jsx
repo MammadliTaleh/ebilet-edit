@@ -97,6 +97,12 @@ const ConfigButton = styled(Button)`
 const AddButton = styled(Button) `
 width:100%;
 `
+const CloseConfigButton = styled(Button)`
+width:30%
+padding:6px;
+  align-items: center;
+  justify-content: center;
+`
 
 const TextArea = styled.textarea`
   width: 100%;
@@ -317,7 +323,7 @@ const EventForm = () => {
             />
           </Label>
 
-          <button onClick={() => setConfigModalOpen(false)}>Close</button>
+          <CloseConfigButton onClick={() => setConfigModalOpen(false)}>Bağla</CloseConfigButton>
         </ModalContent>
       </Modal>
 
