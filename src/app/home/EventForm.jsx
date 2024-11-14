@@ -129,7 +129,16 @@ const EventForm = () => {
   const [eventImage, setEventImage] = useState(null);
   const [ticketImage, setTicketImage] = useState(null);
   const [isConfigModalOpen, setConfigModalOpen] = useState(false);
-
+  const [formData, setFormData] = useState({
+   sirket: ""
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
   const [config, setConfig] = useState({
     agenda: true,
     logoShow: true,
@@ -223,6 +232,7 @@ const EventForm = () => {
   return (
     <Container>
       <Title>Tədbir Redaktə Et</Title>
+      
 
       <ButtonContainer>
         <Button>Əsas</Button>
@@ -261,6 +271,62 @@ const EventForm = () => {
               type="checkbox"
               checked={config.logoShow}
               onChange={(e) => handleConfigChange(["logoShow"], e.target.checked)}
+            />
+          </Label>
+          <Label>
+          buttonDesc:
+            <input className="modal-input"
+              type="text"
+              value={config.newSetPage.buttonDesc}
+              onChange={(e) => handleConfigChange(["neWSetPage", "buttonDesc"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          dynamicRequired:
+            <input className="modal-input"
+              type="text"
+              value={config.newSetPage.dynamicRequired}
+              onChange={(e) => handleConfigChange(["neWSetPage", "dynamicRequired"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          dynamicPage:
+            <input className="modal-input"
+              type="checkbox"
+              value={config.newSetPage.dynamicPage}
+              onChange={(e) => handleConfigChange(["neWSetPage", "dynamicPage"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          bcc:
+            <input className="modal-input"
+              type="text"
+              value={config.EmailConfig.bcc}
+              onChange={(e) => handleConfigChange(["EmailConfig", "bcc"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          SmsLogin:
+            <input className="modal-input"
+              type="text"
+              value={config.SmsIntegration.smsLogin}
+              onChange={(e) => handleConfigChange(["SmsIntegration", "smsLogin"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          SmsPassword:
+            <input className="modal-input"
+              type="text"
+              value={config.SmsIntegration.smsPassword}
+              onChange={(e) => handleConfigChange(["SmsIntegration", "smsPassword"], parseInt(e.target.value, 10))}
+            />
+          </Label>
+          <Label>
+          SmsSender:
+            <input className="modal-input"
+              type="text"
+              value={config.SmsIntegration.smsSenderName}
+              onChange={(e) => handleConfigChange(["SmsIntegration", "smsSenderName"], parseInt(e.target.value, 10))}
             />
           </Label>
         </div>
@@ -497,6 +563,14 @@ const EventForm = () => {
               onChange={(e) => handleConfigChange(["ticketConfig", "textColor"], parseInt(e.target.value, 10))}
             />
           </Label>
+          <Label>
+          sideByside:
+            <input className="modal-input"
+              type="checkbox"
+              value={config.ticketConfig.sideByside}
+              onChange={(e) => handleConfigChange(["ticketConfig", "sideByside"], parseInt(e.target.value, 10))}
+            />
+          </Label>
 
         </div>
         <div className="config-daxili">
@@ -577,15 +651,29 @@ const EventForm = () => {
         </div>
        </div>
         
-
-         
-         
-
+  
          
 
           <CloseConfigButton onClick={() => setConfigModalOpen(false)}>Bağla</CloseConfigButton>
         </ModalContent>
       </Modal>
+
+      <InputGroup>
+        <Label>Şirkətin Adı</Label>
+        <select type="text" placeholder="Şirkətin adı" style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ddd' }}
+          name="tedbir"
+          value={formData.tedbir}
+          onChange={handleChange}
+          required>
+              <option value="">Tədbir Seç</option>
+              <option value="tedbir1">Sənaye Təhlükəsizliyi Zirvəsi 2024</option>
+              <option value="tedbir2">Kitab Sərgisi</option>
+              <option value="tedbir3">MEET POİNT 1 </option>
+              <option value="tedbir4">COP29 Human Capital Forum</option>
+              <option value="tedbir5">TEST FORUM</option>
+              <option value="tedbir6">DigiFest</option>
+          </select>
+      </InputGroup>
 
       <InputGroup>
         <Label>Tədbirin Şəkli</Label>
@@ -606,7 +694,7 @@ const EventForm = () => {
           </>
         )}
       </InputGroup>
-
+         
      
       <InputGroup>
         <Label>Biletin Şəkli</Label>

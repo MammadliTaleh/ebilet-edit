@@ -11,6 +11,7 @@
     font-size: 18;
     padding-right: 30px;
     padding-bottom: 5px;
+    /* flex-wrap: wrap; */
 }
 .config-nisan{
     gap: 10px;
