@@ -1,0 +1,30 @@
+.config-conteiner{
+
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+
+}
+.config-checkbox{
+    line-height: 30px;
+    gap: 20px;
+    font-size: 18;
+    padding-right: 30px;
+    padding-bottom: 5px;
+}
+.config-nisan{
+    gap: 10px;
+    padding-right: 20px;
+
+}
+.modal-input{
+    padding: 4px;
+}
+.config-bilet{
+    gap: 10px;
+    padding-right: 20px;
+}
+.config-daxili{
+    gap: 10px;
+    padding-right: 20px;
+}

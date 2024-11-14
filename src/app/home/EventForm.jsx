@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "react-modal"; 
+import "./ModalEventForm.css"
 
 const Container = styled.div`
   background-color: #ffffff;
@@ -78,11 +79,12 @@ const ModalContent = styled.div`
   padding: 20px;
   background: white;
   border-radius: 8px;
-  max-width: 500px;
+  max-width: 800px;
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  
 `;
 
 const ConfigButton = styled(Button)`
@@ -98,7 +100,7 @@ const AddButton = styled(Button) `
 width:100%;
 `
 const CloseConfigButton = styled(Button)`
-width:30%
+width:100%
 padding:6px;
   align-items: center;
   justify-content: center;
@@ -233,11 +235,12 @@ const EventForm = () => {
         ariaHideApp={false}
       >
         <ModalContent>
-          <h2>Confiqurasiya</h2>
-
-          <Label>
+          <h2>Konfiqurasiya</h2>
+          <div className="config-conteiner">
+        <div className="config-checkbox">
+        <Label>
             Bilet linki:
-            <input
+            <input className="modal-input"
               type="checkbox"
               checked={config.ticketLink}
               onChange={(e) => handleConfigChange(["ticketLink"], e.target.checked)}
@@ -246,7 +249,7 @@ const EventForm = () => {
 
           <Label>
             Agenda:
-            <input
+            <input className="modal-input"
               type="checkbox"
               checked={config.agenda}
               onChange={(e) => handleConfigChange(["agenda"], e.target.checked)}
@@ -254,17 +257,18 @@ const EventForm = () => {
           </Label>
           <Label>
             Logo görünsün:
-            <input
+            <input className="modal-input"
               type="checkbox"
               checked={config.logoShow}
               onChange={(e) => handleConfigChange(["logoShow"], e.target.checked)}
             />
           </Label>
-
-          <h3>Nişan konfiqurasiyası</h3>
+        </div>
+        <div className="config-nisan">
+        <h3>Nişan konfiqurasiyası</h3>
           <Label>
             QR X:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.qrX}
               onChange={(e) => handleConfigChange(["badgeConfig", "qrX"], parseInt(e.target.value, 10))}
@@ -273,7 +277,7 @@ const EventForm = () => {
 
           <Label>
             QR Y:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.qrY}
               onChange={(e) => handleConfigChange(["badgeConfig", "qrY"], parseInt(e.target.value, 10))}
@@ -281,7 +285,7 @@ const EventForm = () => {
           </Label>
           <Label>
             NAME X:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.nameX}
               onChange={(e) => handleConfigChange(["badgeConfig", "nameX"], parseInt(e.target.value, 10))}
@@ -289,7 +293,7 @@ const EventForm = () => {
           </Label>
           <Label>
             NAME Y:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.nameY}
               onChange={(e) => handleConfigChange(["badgeConfig", "nameY"], parseInt(e.target.value, 10))}
@@ -297,7 +301,7 @@ const EventForm = () => {
           </Label>
           <Label>
           QR-ın eni:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.qrWidth}
               onChange={(e) => handleConfigChange(["badgeConfig", "qrWidth"], parseInt(e.target.value, 10))}
@@ -305,7 +309,7 @@ const EventForm = () => {
           </Label>
           <Label>
           addressX: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. addressX}
               onChange={(e) => handleConfigChange(["badgeConfig", "addressX"], parseInt(e.target.value, 10))}
@@ -313,7 +317,7 @@ const EventForm = () => {
           </Label>
           <Label>
           addressY: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. addressY}
               onChange={(e) => handleConfigChange(["badgeConfig", "addressY"], parseInt(e.target.value, 10))}
@@ -321,7 +325,7 @@ const EventForm = () => {
           </Label>
           <Label>
           companyX: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. companyX}
               onChange={(e) => handleConfigChange(["badgeConfig", "companyX"], parseInt(e.target.value, 10))}
@@ -329,7 +333,7 @@ const EventForm = () => {
           </Label>
           <Label>
           companyY: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. companyY}
               onChange={(e) => handleConfigChange(["badgeConfig", "companyY"], parseInt(e.target.value, 10))}
@@ -337,7 +341,7 @@ const EventForm = () => {
           </Label>
           <Label>
           upHeight: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.upHeight}
               onChange={(e) => handleConfigChange(["badgeConfig", "upHeight"], parseInt(e.target.value, 10))}
@@ -345,7 +349,7 @@ const EventForm = () => {
           </Label>
           <Label>
           pageWidth: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. pageWidth}
               onChange={(e) => handleConfigChange(["badgeConfig", " pageWidth"], parseInt(e.target.value, 10))}
@@ -353,7 +357,7 @@ const EventForm = () => {
           </Label>
           <Label>
           positionX: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.  positionX}
               onChange={(e) => handleConfigChange(["badgeConfig", "  positionX"], parseInt(e.target.value, 10))}
@@ -361,7 +365,7 @@ const EventForm = () => {
           </Label>
           <Label>
           positionY: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.  positionY}
               onChange={(e) => handleConfigChange(["badgeConfig", "  positionY"], parseInt(e.target.value, 10))}
@@ -369,7 +373,7 @@ const EventForm = () => {
           </Label>
           <Label>
           textWidth: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. textWidth}
               onChange={(e) => handleConfigChange(["badgeConfig", "  textWidth"], parseInt(e.target.value, 10))}
@@ -377,7 +381,7 @@ const EventForm = () => {
           </Label>
           <Label>
           downHeight: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. downHeight}
               onChange={(e) => handleConfigChange(["badgeConfig", " downHeight"], parseInt(e.target.value, 10))}
@@ -385,7 +389,7 @@ const EventForm = () => {
           </Label>
           <Label>
           pageHeigth: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig. pageHeigth}
               onChange={(e) => handleConfigChange(["badgeConfig", "  pageHeigth"], parseInt(e.target.value, 10))}
@@ -393,7 +397,7 @@ const EventForm = () => {
           </Label>
           <Label>
           nameFontSize: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.nameFontSize}
               onChange={(e) => handleConfigChange(["badgeConfig", " nameFontSize"], parseInt(e.target.value, 10))}
@@ -401,7 +405,7 @@ const EventForm = () => {
           </Label>
           <Label>
           companyFontSize: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.companyFontSize}
               onChange={(e) => handleConfigChange(["badgeConfig", " companyFontSize"], parseInt(e.target.value, 10))}
@@ -410,7 +414,7 @@ const EventForm = () => {
          
           <Label>
           positionFontSize: 
-            <input
+            <input className="modal-input"
               type="number"
               value={config.badgeConfig.positionFontSize}
               onChange={(e) => handleConfigChange(["badgeConfig", " positionFontSize"], parseInt(e.target.value, 10))}
@@ -418,18 +422,19 @@ const EventForm = () => {
           </Label>
           <Label>
           alignCenter: 
-            <input
+            <input className="modal-input"
               type="name"
               value={config.badgeConfig.alignCenter}
               onChange={(e) => handleConfigChange(["badgeConfig", " alignCenter"], parseInt(e.target.value, 10))}
             />
           </Label>
-         
-
+        </div>
+        <div className="config-bilet">
+           
           <h3>Bilet konfiqurasiyası</h3>
           <Label>
             QR X:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.qrX}
               onChange={(e) => handleConfigChange(["ticketConfig", "qrX"], parseInt(e.target.value, 10))}
@@ -438,7 +443,7 @@ const EventForm = () => {
 
           <Label>
             QR Y:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.qrY}
               onChange={(e) => handleConfigChange(["ticketConfig", "qrY"], parseInt(e.target.value, 10))}
@@ -446,7 +451,7 @@ const EventForm = () => {
           </Label>
           <Label>
           textX:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.textX}
               onChange={(e) => handleConfigChange(["ticketConfig", "textX"], parseInt(e.target.value, 10))}
@@ -454,7 +459,7 @@ const EventForm = () => {
           </Label>
           <Label>
             textY:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.textY}
               onChange={(e) => handleConfigChange(["ticketConfig", "textY"], parseInt(e.target.value, 10))}
@@ -462,7 +467,7 @@ const EventForm = () => {
           </Label>
           <Label>
             qrWidth:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.qrWidth}
               onChange={(e) => handleConfigChange(["ticketConfig", "qrWidth"], parseInt(e.target.value, 10))}
@@ -470,7 +475,7 @@ const EventForm = () => {
           </Label>
           <Label>
             nameTextX:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.nameTextX}
               onChange={(e) => handleConfigChange(["ticketConfig", "nameTextX"], parseInt(e.target.value, 10))}
@@ -478,7 +483,7 @@ const EventForm = () => {
           </Label>
           <Label>
             nameTextY:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketConfig.nameTextY}
               onChange={(e) => handleConfigChange(["ticketConfig", "nameTexty"], parseInt(e.target.value, 10))}
@@ -486,17 +491,19 @@ const EventForm = () => {
           </Label>
           <Label>
            textColor:
-            <input
+            <input className="modal-input"
               type="color"
               value={config.ticketConfig.textColor}
               onChange={(e) => handleConfigChange(["ticketConfig", "textColor"], parseInt(e.target.value, 10))}
             />
           </Label>
 
-          <h3>Bilet daxili konfiqurasiyası</h3>
+        </div>
+        <div className="config-daxili">
+        <h3>Bilet daxili konfiqurasiyası</h3>
           <Label>
             QR X:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.qrX}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "qrX"], parseInt(e.target.value, 10))}
@@ -504,7 +511,7 @@ const EventForm = () => {
           </Label>
           <Label>
             QR Y:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.qrY}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "qrY"], parseInt(e.target.value, 10))}
@@ -512,7 +519,7 @@ const EventForm = () => {
           </Label>
           <Label>
             test X:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.textX}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "testX"], parseInt(e.target.value, 10))}
@@ -520,7 +527,7 @@ const EventForm = () => {
           </Label>
           <Label>
             test Y:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.textY}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "testY"], parseInt(e.target.value, 10))}
@@ -528,7 +535,7 @@ const EventForm = () => {
           </Label>
           <Label>
             qrWidth:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.qrWidth}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "qrWidth"], parseInt(e.target.value, 10))}
@@ -536,7 +543,7 @@ const EventForm = () => {
           </Label>
           <Label>
             pageWidth:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.pageWidth}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "pageWidth"], parseInt(e.target.value, 10))}
@@ -544,7 +551,7 @@ const EventForm = () => {
           </Label>
           <Label>
             pageHeight:
-            <input
+            <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.pageHeight}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "pageHeight"], parseInt(e.target.value, 10))}
@@ -552,7 +559,7 @@ const EventForm = () => {
           </Label>
           <Label>
             ticketName:
-            <input
+            <input className="modal-input"
               type="name"
               value={config.ticketEmptyConfig.ticketName}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "ticketName"], parseInt(e.target.value, 10))}
@@ -561,11 +568,20 @@ const EventForm = () => {
           <Label>
             alignCenter:
             <input
+               className="modal-input"
               type="name"
               value={config.ticketEmptyConfig.alignCenter}
               onChange={(e) => handleConfigChange(["ticketEmptyConfig", "alignCenter"], parseInt(e.target.value, 10))}
             />
           </Label>
+        </div>
+       </div>
+        
+
+         
+         
+
+         
 
           <CloseConfigButton onClick={() => setConfigModalOpen(false)}>Bağla</CloseConfigButton>
         </ModalContent>
@@ -666,6 +682,14 @@ const EventForm = () => {
       <InputGroup>
         <Label>Gizlilik Siyasəti</Label>
         <TextArea placeholder="Gizlilik siyasəti" rows="4" />
+      </InputGroup>
+      <InputGroup>
+        <Label>E-mailə göndəriləcək mətn</Label>
+        <TextArea placeholder="Mətn daxil edin" rows="4" />
+      </InputGroup>
+      <InputGroup>
+        <Label>SMS-ə göndəriləcək mətn</Label>
+        <TextArea placeholder="Mətn daxil edin" rows="4" />
       </InputGroup>
       <ButtonContainer>
         <AddButton>Əlavə Et</AddButton>
