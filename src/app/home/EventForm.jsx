@@ -44,11 +44,13 @@ const Button = styled.button`
 
 const InputGroup = styled.div`
   margin-bottom: 15px;
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
 
 `;
 
 const Label = styled.label`
+  display: flex;
+  width: 100%;
   font-weight: bold;
   margin-bottom: 5px;
   color: rgb(72, 72, 74);
@@ -76,10 +78,10 @@ const Input = styled.input`
 `;
 
 const ModalContent = styled.div`
-  padding: 20px;
+  padding: 0px 20px 0 50px;
+  height:50vh;
   background: white;
   border-radius: 8px;
-  max-width: 800px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -129,16 +131,6 @@ const EventForm = () => {
   const [eventImage, setEventImage] = useState(null);
   const [ticketImage, setTicketImage] = useState(null);
   const [isConfigModalOpen, setConfigModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-   sirket: ""
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
   const [config, setConfig] = useState({
     agenda: true,
     logoShow: true,
@@ -216,7 +208,7 @@ const EventForm = () => {
     },
   });
 
-  const updateNestedConfig = (obj, keyPath, value) => {
+  const updateNestedConfig = (obj, keyPath, value) => { 
     const lastKey = keyPath.pop();
     const lastObj = keyPath.reduce(
       (nestedObj, key) => nestedObj[key] || (nestedObj[key] = {}),
@@ -245,11 +237,12 @@ const EventForm = () => {
         ariaHideApp={false}
       >
         <ModalContent>
-          <h2>Konfiqurasiya</h2>
+          <h2 style={{color:" #0056b3"}}>Konfiqurasiya</h2>
           <div className="config-conteiner">
-        <div className="config-checkbox">
+        <div className="config">
+        <h3  style={{color:"#007bff"}}>Checkbox</h3>
         <Label>
-            Bilet linki:
+            <div className="word-side">Bilet linki:</div>
             <input className="modal-input"
               type="checkbox"
               checked={config.ticketLink}
@@ -258,7 +251,7 @@ const EventForm = () => {
           </Label>
 
           <Label>
-            Agenda:
+          <div className="word-side">Agenda:</div>
             <input className="modal-input"
               type="checkbox"
               checked={config.agenda}
@@ -266,7 +259,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            Logo görünsün:
+          <div className="word-side">Logo görünsün:</div>
             <input className="modal-input"
               type="checkbox"
               checked={config.logoShow}
@@ -274,15 +267,14 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          buttonDesc:
-            <input className="modal-input"
+          <div className="word-side">buttonDesc:</div>            <input className="modal-input"
               type="text"
               value={config.newSetPage.buttonDesc}
               onChange={(e) => handleConfigChange(["neWSetPage", "buttonDesc"], parseInt(e.target.value, 10))}
             />
           </Label>
           <Label>
-          dynamicRequired:
+          <div className="word-side">dynamicRequired</div>
             <input className="modal-input"
               type="text"
               value={config.newSetPage.dynamicRequired}
@@ -290,7 +282,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          dynamicPage:
+          <div className="word-side">dynamicPage</div>
             <input className="modal-input"
               type="checkbox"
               value={config.newSetPage.dynamicPage}
@@ -298,7 +290,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          bcc:
+          <div className="word-side">bcc</div>
             <input className="modal-input"
               type="text"
               value={config.EmailConfig.bcc}
@@ -306,7 +298,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          SmsLogin:
+          <div className="word-side">SmsLogin:</div>
             <input className="modal-input"
               type="text"
               value={config.SmsIntegration.smsLogin}
@@ -314,7 +306,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          SmsPassword:
+          <div className="word-side">SmsPassword:</div>
             <input className="modal-input"
               type="text"
               value={config.SmsIntegration.smsPassword}
@@ -322,7 +314,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          SmsSender:
+          <div className="word-side">SmsSender:</div>
             <input className="modal-input"
               type="text"
               value={config.SmsIntegration.smsSenderName}
@@ -330,10 +322,10 @@ const EventForm = () => {
             />
           </Label>
         </div>
-        <div className="config-nisan">
-        <h3>Nişan konfiqurasiyası</h3>
+        <div className="config">
+        <h3  style={{color:"#007bff"}} >Nişan konfiqurasiyası</h3>
           <Label>
-            QR X:
+          <div className="word-side">QR X:</div>
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.qrX}
@@ -342,7 +334,7 @@ const EventForm = () => {
           </Label>
 
           <Label>
-            QR Y:
+          <div className="word-side">QR Y:</div>
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.qrY}
@@ -350,7 +342,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            NAME X:
+          <div className="word-side">Name X:</div>
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.nameX}
@@ -358,7 +350,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            NAME Y:
+          <div className="word-side">Name Y:</div>
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.nameY}
@@ -366,7 +358,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          QR-ın eni:
+          <div className="word-side">qrWidth:</div>
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.qrWidth}
@@ -374,7 +366,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          addressX: 
+          <div className="word-side">address X:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. addressX}
@@ -382,7 +374,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          addressY: 
+          <div className="word-side">address Y:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. addressY}
@@ -390,7 +382,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          companyX: 
+          <div className="word-side">Company X:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. companyX}
@@ -398,7 +390,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          companyY: 
+          <div className="word-side">Company Y:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. companyY}
@@ -406,15 +398,18 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          upHeight: 
+          <div className="word-side">upHeight:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.upHeight}
               onChange={(e) => handleConfigChange(["badgeConfig", "upHeight"], parseInt(e.target.value, 10))}
             />
           </Label>
+          </div>
+        <div className="config">
+          <h3  style={{color:"white"}}>nisan kanfuqrasiyasi</h3>
           <Label>
-          pageWidth: 
+          <div className="word-side">pageWidth:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. pageWidth}
@@ -422,7 +417,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          positionX: 
+          <div className="word-side">position X:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.  positionX}
@@ -430,15 +425,16 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          positionY: 
+          <div className="word-side">position Y:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.  positionY}
               onChange={(e) => handleConfigChange(["badgeConfig", "  positionY"], parseInt(e.target.value, 10))}
             />
           </Label>
+        
           <Label>
-          textWidth: 
+          <div className="word-side">textWidth:</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. textWidth}
@@ -446,7 +442,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          downHeight: 
+          <div className="word-side">downHeight</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. downHeight}
@@ -454,7 +450,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          pageHeigth: 
+          <div className="word-side">pageHeight</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig. pageHeigth}
@@ -462,7 +458,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          nameFontSize: 
+          <div className="word-side">nameFontSize</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.nameFontSize}
@@ -470,7 +466,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          companyFontSize: 
+          <div className="word-side">companyFontSize</div> 
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.companyFontSize}
@@ -479,7 +475,7 @@ const EventForm = () => {
           </Label>
          
           <Label>
-          positionFontSize: 
+          <div className="word-side">positionFontSize</div>  
             <input className="modal-input"
               type="number"
               value={config.badgeConfig.positionFontSize}
@@ -487,7 +483,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          alignCenter: 
+          <div className="word-side">alignCenter</div> 
             <input className="modal-input"
               type="name"
               value={config.badgeConfig.alignCenter}
@@ -495,11 +491,11 @@ const EventForm = () => {
             />
           </Label>
         </div>
-        <div className="config-bilet">
+        <div className="config">
            
-          <h3>Bilet konfiqurasiyası</h3>
+          <h3  style={{color:"#007bff"}}>Bilet konfiqurasiyası</h3>
           <Label>
-            QR X:
+          <div className="word-side">QR X:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.qrX}
@@ -508,7 +504,7 @@ const EventForm = () => {
           </Label>
 
           <Label>
-            QR Y:
+          <div className="word-side">QR Y:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.qrY}
@@ -516,7 +512,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          textX:
+          <div className="word-side">text X:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.textX}
@@ -524,7 +520,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            textY:
+          <div className="word-side">text Y:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.textY}
@@ -532,7 +528,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            qrWidth:
+          <div className="word-side">qrWidth:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.qrWidth}
@@ -540,7 +536,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            nameTextX:
+          <div className="word-side">nameTextX:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.nameTextX}
@@ -548,7 +544,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            nameTextY:
+          <div className="word-side">nameTextY:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketConfig.nameTextY}
@@ -556,7 +552,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-           textColor:
+          <div className="word-side">textColor</div>
             <input className="modal-input"
               type="color"
               value={config.ticketConfig.textColor}
@@ -564,7 +560,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-          sideByside:
+          <div className="word-side">sideByside:</div>
             <input className="modal-input"
               type="checkbox"
               value={config.ticketConfig.sideByside}
@@ -573,10 +569,10 @@ const EventForm = () => {
           </Label>
 
         </div>
-        <div className="config-daxili">
-        <h3>Bilet daxili konfiqurasiyası</h3>
+        <div className="config">
+        <h3  style={{color:"#007bff"}}>Bilet daxili</h3>
           <Label>
-            QR X:
+          <div className="word-side">QR X:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.qrX}
@@ -584,7 +580,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            QR Y:
+          <div className="word-side">QR Y:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.qrY}
@@ -592,7 +588,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            test X:
+          <div className="word-side">Test X:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.textX}
@@ -600,7 +596,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            test Y:
+          <div className="word-side">Test Y:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.textY}
@@ -608,7 +604,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            qrWidth:
+          <div className="word-side">qrWidth:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.qrWidth}
@@ -616,7 +612,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            pageWidth:
+          <div className="word-side">pageWidth:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.pageWidth}
@@ -624,7 +620,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            pageHeight:
+          <div className="word-side">pageHeight:</div>
             <input className="modal-input"
               type="number"
               value={config.ticketEmptyConfig.pageHeight}
@@ -632,7 +628,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            ticketName:
+          <div className="word-side">ticketName:</div>
             <input className="modal-input"
               type="name"
               value={config.ticketEmptyConfig.ticketName}
@@ -640,7 +636,7 @@ const EventForm = () => {
             />
           </Label>
           <Label>
-            alignCenter:
+          <div className="word-side">alignCenter</div>
             <input
                className="modal-input"
               type="name"
@@ -650,11 +646,11 @@ const EventForm = () => {
           </Label>
         </div>
        </div>
-        
-  
-         
-
-          <CloseConfigButton onClick={() => setConfigModalOpen(false)}>Bağla</CloseConfigButton>
+       <div style={{display:"flex",gap:"4%"}}>
+       <CloseConfigButton onClick={() => setConfigModalOpen(false)}>Bağla</CloseConfigButton>
+       <CloseConfigButton onClick={() => setConfigModalOpen(false)}>Yadda Saxla</CloseConfigButton>
+       </div>
+          
         </ModalContent>
       </Modal>
 
@@ -662,8 +658,6 @@ const EventForm = () => {
         <Label>Şirkətin Adı</Label>
         <select type="text" placeholder="Şirkətin adı" style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ddd' }}
           name="tedbir"
-          value={formData.tedbir}
-          onChange={handleChange}
           required>
               <option value="">Tədbir Seç</option>
               <option value="tedbir1">Sənaye Təhlükəsizliyi Zirvəsi 2024</option>
